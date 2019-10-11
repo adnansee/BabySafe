@@ -9,6 +9,14 @@
         android:title="MAIN"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/search"
+        android:icon="@mipmap/compass"
+        android:title="search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+
+        app:showAsAction="always" />
+
 
     <item
         android:id="@+id/settings"

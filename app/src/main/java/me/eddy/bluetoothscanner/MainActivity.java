@@ -1,6 +1,7 @@
 package me.eddy.bluetoothscanner;
 
 import android.Manifest;
+import android.app.SearchManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,16 +25,22 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.support.v4.view.MenuItemCompat.getActionView;
+import static me.eddy.bluetoothscanner.R.menu.toolbar;
+
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     public static final String TAG = "MainActivity";
+
 
     public static Context contextOfApplication;
 
@@ -83,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setContentView(R.layout.activity_main);
         contextOfApplication = getApplicationContext();
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initView();
@@ -125,8 +134,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar, menu);
+        getMenuInflater().inflate(toolbar, menu);
+
+
         return true;
+
     }
 
     @Override
@@ -134,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         switch (item.getItemId()) {
             case R.id.set_visible:
                 Intent visibleIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-                visibleIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 60);
+                visibleIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 20);
                 startActivity(visibleIntent);
                 Toast.makeText(this, "SEARCH DEVICE", Toast.LENGTH_LONG).show();
                 //register scanModeReceiver
@@ -157,9 +169,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 */
 //  Intent intent = new Intent(this, EnterDevice.class);
 
-  //              babyAlert.setEnterDevice(intent.getAction());
-    //            startActivity(intent);
+                //              babyAlert.setEnterDevice(intent.getAction());
+                //            startActivity(intent);
                 break;
+            case R.id.search:
+
+
+                return true;
             case R.id.about:
                 Toast.makeText(this, "Baby On Board INTEC", Toast.LENGTH_SHORT).show();
                 break;
@@ -241,8 +257,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
                 devices.remove(scannedDevice(mDevice));
 
-                if(mDevice.getAddress().equals(babyAlert.enterDevice2))
-                devices.add(mDevice);
+
+                if (mDevice.getAddress().equals(babyAlert.enterDevice2))
+                    devices.add(mDevice);
                 deviceAdapter.notifyDataSetChanged();
 
 
@@ -257,7 +274,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             for (Device device : devices) {
                 if (d.getAddress().equals(device.getAddress())) {
 
-                    return device;}
+                    return device;
+                }
 
             }
             return null;

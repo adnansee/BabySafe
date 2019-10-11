@@ -18,8 +18,19 @@ public class BabyAlert {
     ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 200);
     String enterDevice = "d8:a0:1d:54:a7:60";
     String enterDevice2 = "D8:A0:1D:54:A7:62";
-    String enterDevice3 = "";
+    String enterDevice3 = "1C:A0:D3:9C:F7:75";
 
+    public void setEnterDevice2(String enterDevice2) {
+        this.enterDevice2 = enterDevice2;
+    }
+
+    public String getEnterDevice3() {
+        return enterDevice3;
+    }
+
+    public void setEnterDevice3(String enterDevice3) {
+        this.enterDevice3 = enterDevice3;
+    }
 
     public String getEnterDevice2() {
         return enterDevice2;
@@ -52,7 +63,7 @@ public class BabyAlert {
         try{
             if(mDevice.getName()==null){}
             else{
-                if((mDevice.getAddress().equals(getEnterDevice2())) && mDevice.getSignal()<-90)
+                if((mDevice.getAddress().equals(getEnterDevice2())) && mDevice.getSignal()<-70)
                 {toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 2000);
                     vibratePhone(contextOfApplication, (short) 200);
                 }
