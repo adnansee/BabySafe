@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="key_category_switch"
+        android:title="CHANGE">
+
+        <SwitchPreference
+            android:key="key_settings_use_percentage"
+            android:title="USE DISTANCE"
+            android:summary="net dBm"
+            android:defaultValue="false"/>
+
+        <SwitchPreference
+            android:key="key_settings_display_paired_devices"
+            android:title="SHOW PAIRED"
+            android:summary="N/A"
+            android:defaultValue="false"
+            android:enabled="false"/>
+
+        <EditTextPreference
+            android:id="@+id/enter_name_of_device"
+
+            />
+
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>
