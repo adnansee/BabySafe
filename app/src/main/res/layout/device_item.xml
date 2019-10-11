@@ -19,7 +19,8 @@
             android:layout_alignParentStart="true"
             android:layout_margin="8dp"
             android:textSize="22sp"
-            android:text="未知设备"/>
+            android:text="showText"
+            android:fontFamily="@android:"/>
         <TextView
             android:id="@+id/text_address"
             android:layout_width="wrap_content"

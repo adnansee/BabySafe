@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="deepAqua">#003B46</color>
+    <color name="ocean">#07575B</color>
+    <color name="wave">#66A5AD</color>
+    <color name="seaFoam">#C4DFE6</color>
 </resources>

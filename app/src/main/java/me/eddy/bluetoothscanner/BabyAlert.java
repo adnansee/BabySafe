@@ -66,6 +66,10 @@ public class BabyAlert {
                 if((mDevice.getAddress().equals(getEnterDevice2())) && mDevice.getSignal()<-70)
                 {toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 2000);
                     vibratePhone(contextOfApplication, (short) 200);
+                    Toast.makeText(contextOfApplication, "DID YOU FORGET SOMETHING?", Toast.LENGTH_SHORT).show();
+
+
+
                 }
                 }
 
