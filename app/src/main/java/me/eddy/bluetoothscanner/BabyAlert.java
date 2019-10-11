@@ -1,17 +1,25 @@
 package me.eddy.bluetoothscanner;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Toast;
 
+import static android.content.Context.VIBRATOR_SERVICE;
+import static me.eddy.bluetoothscanner.MainActivity.contextOfApplication;
 import static me.eddy.bluetoothscanner.MainActivity.getContextOfApplication;
 
 public class BabyAlert {
-    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 50);
+    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 200);
     String enterDevice = "d8:a0:1d:54:a7:60";
     String enterDevice2 = "D8:A0:1D:54:A7:62";
+    String enterDevice3 = "";
+
 
     public String getEnterDevice2() {
         return enterDevice2;
@@ -44,10 +52,26 @@ public class BabyAlert {
         try{
             if(mDevice.getName()==null){}
             else{
-                if((mDevice.getAddress().equals(getEnterDevice2())) && mDevice.getSignal()<-70){toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 2000);}}}
+                if((mDevice.getAddress().equals(getEnterDevice2())) && mDevice.getSignal()<-90)
+                {toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 2000);
+                    vibratePhone(contextOfApplication, (short) 200);
+                }
+                }
+
+
+        }
+
         catch (Exception e){}
 
     }
 
+    public void vibrate(int duration)
+    {
+        Vibrator vibs;
 
+    }
+    public static final void vibratePhone(Context context, short vibrateMilliSeconds) {
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(vibrateMilliSeconds);
+    }
 }

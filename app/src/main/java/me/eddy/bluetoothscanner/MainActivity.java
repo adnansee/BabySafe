@@ -30,7 +30,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     public static final String TAG = "MainActivity";
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     private int ACCESS_COARSE_LOCATION_CODE = 1;
 
-   public BabyAlert babyAlert = new BabyAlert();
+    public BabyAlert babyAlert = new BabyAlert();
 
     private int REQUEST_ENABLE_BLUETOOTH = 2;
 
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         switch (item.getItemId()) {
             case R.id.set_visible:
                 Intent visibleIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-                visibleIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 120);
+                visibleIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 60);
                 startActivity(visibleIntent);
                 Toast.makeText(this, "SEARCH DEVICE", Toast.LENGTH_LONG).show();
                 //register scanModeReceiver
@@ -155,10 +155,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     Toast.makeText(this, "Failed going to settings", Toast.LENGTH_SHORT).show();
                 }
                 */
-                Intent intent = new Intent(this, EnterDevice.class);
+//  Intent intent = new Intent(this, EnterDevice.class);
 
-                    babyAlert.setEnterDevice(intent.getAction());
-                startActivity(intent);
+  //              babyAlert.setEnterDevice(intent.getAction());
+    //            startActivity(intent);
                 break;
             case R.id.about:
                 Toast.makeText(this, "Baby On Board INTEC", Toast.LENGTH_SHORT).show();
@@ -180,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         textDeviceMac = (TextView) findViewById(R.id.text_address);
         textDeviceSignal = (TextView) findViewById(R.id.text_signal);
         textDevicePaired = (TextView) findViewById(R.id.text_paired);
+
         deviceAdapter = new DeviceAdapter(devices);
         recyclerView.setAdapter(deviceAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -201,6 +202,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         }
         mBluetoothAdapter.startDiscovery();
     }
+
     @Override
     public void onRefresh() {
         runOnUiThread(new Runnable() {
@@ -208,11 +210,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             public void run() {
                 if (mBluetoothAdapter != null) {
                     if (!mBluetoothAdapter.isEnabled()) {
-                  mBluetoothAdapter.enable();
+                        mBluetoothAdapter.enable();
                         Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                         startActivityForResult(enableIntent, REQUEST_ENABLE_BLUETOOTH);
                     }
-                    handler.post(scanTask);}
+                    handler.post(scanTask);
+                }
                 deviceAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -227,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 String deviceName = device.getName();
-                boolean  paired = device.getBondState() == BluetoothDevice.BOND_BONDED;
+                boolean paired = device.getBondState() == BluetoothDevice.BOND_BONDED;
                 String deviceAddress = device.getAddress();
                 short deviceRSSI = intent.getExtras().getShort(BluetoothDevice.EXTRA_RSSI, (short) 0);
                 Device mDevice = new Device(deviceName, paired, deviceAddress, deviceRSSI);
@@ -236,12 +239,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 babyAlert.alertGardian(mDevice);
 
 
-
-
                 devices.remove(scannedDevice(mDevice));
+
+                if(mDevice.getAddress().equals(babyAlert.enterDevice2))
                 devices.add(mDevice);
                 deviceAdapter.notifyDataSetChanged();
-
 
 
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
@@ -254,8 +256,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         private Device scannedDevice(Device d) {
             for (Device device : devices) {
                 if (d.getAddress().equals(device.getAddress())) {
-                    return device;
-                }
+
+                    return device;}
+
             }
             return null;
         }
@@ -286,4 +289,4 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
 
-    }
+}

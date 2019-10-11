@@ -27,7 +27,9 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceHold
         TextView textDevicePaired;
 
         public DeviceHolder(View itemView) {
+
             super(itemView);
+
             textDeviceName = (TextView) itemView.findViewById(R.id.text_name);
             textDeviceAddress = (TextView) itemView.findViewById(R.id.text_address);
             textDeviceSignal = (TextView) itemView.findViewById(R.id.text_signal);
