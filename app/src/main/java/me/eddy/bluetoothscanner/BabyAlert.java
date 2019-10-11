@@ -9,8 +9,13 @@ import android.widget.Toast;
 import static me.eddy.bluetoothscanner.MainActivity.getContextOfApplication;
 
 public class BabyAlert {
-    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-    String enterDevice = "";
+    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 50);
+    String enterDevice = "d8:a0:1d:54:a7:60";
+    String enterDevice2 = "D8:A0:1D:54:A7:62";
+
+    public String getEnterDevice2() {
+        return enterDevice2;
+    }
 
     public String getEnterDevice() {
         return enterDevice;
@@ -39,7 +44,7 @@ public class BabyAlert {
         try{
             if(mDevice.getName()==null){}
             else{
-                if((mDevice.getAddress().equals(getEnterDevice())) && mDevice.getSignal()<30){toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 2000);}}}
+                if((mDevice.getAddress().equals(getEnterDevice2())) && mDevice.getSignal()<-70){toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 2000);}}}
         catch (Exception e){}
 
     }

@@ -156,8 +156,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 }
                 */
                 Intent intent = new Intent(this, EnterDevice.class);
-                intent.addCategory()
-                    babyAlert.setEnterDevice(intent);
+
+                    babyAlert.setEnterDevice(intent.getAction());
                 startActivity(intent);
                 break;
             case R.id.about:

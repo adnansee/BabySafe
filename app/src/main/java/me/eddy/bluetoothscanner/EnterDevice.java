@@ -13,6 +13,10 @@ public class EnterDevice extends Activity {
         this.enterDevice = String.valueOf(enterDevice);
     }
 
+    public String getEnterDevice() {
+        return enterDevice;
+    }
+
     Context contextOfApplication;
 
     public Context getContextOfApplication() {
