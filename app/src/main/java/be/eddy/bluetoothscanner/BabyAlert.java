@@ -1,18 +1,12 @@
-package me.eddy.bluetoothscanner;
+package be.eddy.bluetoothscanner;
 
 import android.content.Context;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
-import android.os.Build;
-import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.view.View;
 import android.widget.Toast;
 
-import static android.content.Context.VIBRATOR_SERVICE;
-import static me.eddy.bluetoothscanner.MainActivity.contextOfApplication;
-import static me.eddy.bluetoothscanner.MainActivity.getContextOfApplication;
+import static be.eddy.bluetoothscanner.MainActivity.contextOfApplication;
 
 public class BabyAlert {
     ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 200);

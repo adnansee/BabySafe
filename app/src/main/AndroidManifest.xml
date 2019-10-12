@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="me.eddy.bluetoothscanner">
+          package="be.eddy.bluetoothscanner">
 
     <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
@@ -8,15 +8,16 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/carseat"
-        android:label="BabyScan2"
+        android:label="BabyScanVifi"
 
         android:roundIcon="@mipmap/carseat"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="me.eddy.bluetoothscanner.MainActivity">
+        <activity android:name="be.eddy.bluetoothscanner.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -31,7 +32,7 @@
             <meta-data android:name="android.app.searchable" android:resource="@xml/searchable" />
         </activity>
 
-        <activity android:name="me.eddy.bluetoothscanner.SettingsFragment">
+        <activity android:name="be.eddy.bluetoothscanner.SettingsFragment">
             <intent-filter>
                 <category android:name="android.intent.category.PREFERENCE"/>
             </intent-filter>

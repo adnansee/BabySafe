@@ -1,4 +1,4 @@
-package me.eddy.bluetoothscanner;
+package be.eddy.bluetoothscanner;
 
 import org.junit.Test;
 

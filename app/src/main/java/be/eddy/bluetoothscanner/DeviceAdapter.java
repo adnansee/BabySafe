@@ -1,9 +1,7 @@
-package me.eddy.bluetoothscanner;
+package be.eddy.bluetoothscanner;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.AudioManager;
-import android.media.ToneGenerator;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
